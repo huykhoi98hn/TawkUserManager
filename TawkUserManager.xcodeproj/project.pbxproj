@@ -7,16 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FEC1544E27685125BB02ABA /* Pods_TawkUserManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229BDD57ED54EC14CB7B3042 /* Pods_TawkUserManager.framework */; };
 		AA39D09D282F8A86005BD339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D09C282F8A86005BD339 /* AppDelegate.swift */; };
-		AA39D09F282F8A86005BD339 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D09E282F8A86005BD339 /* SceneDelegate.swift */; };
-		AA39D0A1282F8A86005BD339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0A0282F8A86005BD339 /* ViewController.swift */; };
-		AA39D0A4282F8A86005BD339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA39D0A2282F8A86005BD339 /* Main.storyboard */; };
 		AA39D0A7282F8A86005BD339 /* TawkUserManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0A5282F8A86005BD339 /* TawkUserManager.xcdatamodeld */; };
 		AA39D0A9282F8A88005BD339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA39D0A8282F8A88005BD339 /* Assets.xcassets */; };
 		AA39D0AC282F8A88005BD339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA39D0AA282F8A88005BD339 /* LaunchScreen.storyboard */; };
 		AA39D0B7282F8A88005BD339 /* TawkUserManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0B6282F8A88005BD339 /* TawkUserManagerTests.swift */; };
 		AA39D0C1282F8A89005BD339 /* TawkUserManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0C0282F8A89005BD339 /* TawkUserManagerUITests.swift */; };
 		AA39D0C3282F8A89005BD339 /* TawkUserManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0C2282F8A89005BD339 /* TawkUserManagerUITestsLaunchTests.swift */; };
+		AA39D0D4282F8C77005BD339 /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0D3282F8C77005BD339 /* UserCoordinator.swift */; };
+		AA39D0D6282F8C8B005BD339 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0D5282F8C8B005BD339 /* Coordinator.swift */; };
+		AA39D0E0282F923C005BD339 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0DD282F923C005BD339 /* UserViewController.swift */; };
+		AA39D0E1282F923C005BD339 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0DE282F923C005BD339 /* UserViewModel.swift */; };
+		AA39D0E2282F923C005BD339 /* UserDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */; };
+		AA39D0E4282F9343005BD339 /* ControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0E3282F9343005BD339 /* ControllerType.swift */; };
+		AA39D0E6282F93B5005BD339 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0E5282F93B5005BD339 /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		229BDD57ED54EC14CB7B3042 /* Pods_TawkUserManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TawkUserManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83EEC00A184852F0D32754E2 /* Pods-TawkUserManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawkUserManager.release.xcconfig"; path = "Target Support Files/Pods-TawkUserManager/Pods-TawkUserManager.release.xcconfig"; sourceTree = "<group>"; };
+		932E67A97E4614F6B43157AF /* Pods-TawkUserManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TawkUserManager.debug.xcconfig"; path = "Target Support Files/Pods-TawkUserManager/Pods-TawkUserManager.debug.xcconfig"; sourceTree = "<group>"; };
 		AA39D099282F8A86005BD339 /* TawkUserManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TawkUserManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA39D09C282F8A86005BD339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA39D09E282F8A86005BD339 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AA39D0A0282F8A86005BD339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AA39D0A3282F8A86005BD339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA39D0A6282F8A86005BD339 /* TawkUserManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TawkUserManager.xcdatamodel; sourceTree = "<group>"; };
 		AA39D0A8282F8A88005BD339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA39D0AB282F8A88005BD339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +56,13 @@
 		AA39D0BC282F8A89005BD339 /* TawkUserManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TawkUserManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA39D0C0282F8A89005BD339 /* TawkUserManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawkUserManagerUITests.swift; sourceTree = "<group>"; };
 		AA39D0C2282F8A89005BD339 /* TawkUserManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TawkUserManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AA39D0D3282F8C77005BD339 /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
+		AA39D0D5282F8C8B005BD339 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		AA39D0DD282F923C005BD339 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		AA39D0DE282F923C005BD339 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDisplayModel.swift; sourceTree = "<group>"; };
+		AA39D0E3282F9343005BD339 /* ControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerType.swift; sourceTree = "<group>"; };
+		AA39D0E5282F93B5005BD339 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FEC1544E27685125BB02ABA /* Pods_TawkUserManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +98,8 @@
 				AA39D0B5282F8A88005BD339 /* TawkUserManagerTests */,
 				AA39D0BF282F8A89005BD339 /* TawkUserManagerUITests */,
 				AA39D09A282F8A86005BD339 /* Products */,
+				D46B9D265608A1DDF282CD16 /* Pods */,
+				B2955701064D2B148B3AC555 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +116,9 @@
 		AA39D09B282F8A86005BD339 /* TawkUserManager */ = {
 			isa = PBXGroup;
 			children = (
+				AA39D0DB282F91E5005BD339 /* Screen */,
+				AA39D0D0282F8C34005BD339 /* Base */,
 				AA39D09C282F8A86005BD339 /* AppDelegate.swift */,
-				AA39D09E282F8A86005BD339 /* SceneDelegate.swift */,
-				AA39D0A0282F8A86005BD339 /* ViewController.swift */,
-				AA39D0A2282F8A86005BD339 /* Main.storyboard */,
 				AA39D0A8282F8A88005BD339 /* Assets.xcassets */,
 				AA39D0AA282F8A88005BD339 /* LaunchScreen.storyboard */,
 				AA39D0AD282F8A88005BD339 /* Info.plist */,
@@ -130,6 +144,60 @@
 			path = TawkUserManagerUITests;
 			sourceTree = "<group>";
 		};
+		AA39D0CF282F8C29005BD339 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0D3282F8C77005BD339 /* UserCoordinator.swift */,
+				AA39D0DA282F91D5005BD339 /* UserList */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		AA39D0D0282F8C34005BD339 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0D5282F8C8B005BD339 /* Coordinator.swift */,
+				AA39D0E3282F9343005BD339 /* ControllerType.swift */,
+				AA39D0E5282F93B5005BD339 /* ViewModelType.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		AA39D0DA282F91D5005BD339 /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0DD282F923C005BD339 /* UserViewController.swift */,
+				AA39D0DE282F923C005BD339 /* UserViewModel.swift */,
+				AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
+		AA39D0DB282F91E5005BD339 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0CF282F8C29005BD339 /* User */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		B2955701064D2B148B3AC555 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				229BDD57ED54EC14CB7B3042 /* Pods_TawkUserManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D46B9D265608A1DDF282CD16 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				932E67A97E4614F6B43157AF /* Pods-TawkUserManager.debug.xcconfig */,
+				83EEC00A184852F0D32754E2 /* Pods-TawkUserManager.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA39D0C6282F8A89005BD339 /* Build configuration list for PBXNativeTarget "TawkUserManager" */;
 			buildPhases = (
+				94A17F2FA7010340F0C3D7FE /* [CP] Check Pods Manifest.lock */,
 				AA39D095282F8A86005BD339 /* Sources */,
 				AA39D096282F8A86005BD339 /* Frameworks */,
 				AA39D097282F8A86005BD339 /* Resources */,
+				4DEF25479F8FA94B4BA91D7F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,7 +306,6 @@
 			files = (
 				AA39D0AC282F8A88005BD339 /* LaunchScreen.storyboard in Resources */,
 				AA39D0A9282F8A88005BD339 /* Assets.xcassets in Resources */,
-				AA39D0A4282F8A86005BD339 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,15 +325,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4DEF25479F8FA94B4BA91D7F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TawkUserManager/Pods-TawkUserManager-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TawkUserManager/Pods-TawkUserManager-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TawkUserManager/Pods-TawkUserManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94A17F2FA7010340F0C3D7FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TawkUserManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AA39D095282F8A86005BD339 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA39D0A1282F8A86005BD339 /* ViewController.swift in Sources */,
+				AA39D0E4282F9343005BD339 /* ControllerType.swift in Sources */,
+				AA39D0E2282F923C005BD339 /* UserDisplayModel.swift in Sources */,
+				AA39D0E0282F923C005BD339 /* UserViewController.swift in Sources */,
+				AA39D0E1282F923C005BD339 /* UserViewModel.swift in Sources */,
 				AA39D0A7282F8A86005BD339 /* TawkUserManager.xcdatamodeld in Sources */,
+				AA39D0D6282F8C8B005BD339 /* Coordinator.swift in Sources */,
+				AA39D0D4282F8C77005BD339 /* UserCoordinator.swift in Sources */,
+				AA39D0E6282F93B5005BD339 /* ViewModelType.swift in Sources */,
 				AA39D09D282F8A86005BD339 /* AppDelegate.swift in Sources */,
-				AA39D09F282F8A86005BD339 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +417,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AA39D0A2282F8A86005BD339 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA39D0A3282F8A86005BD339 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AA39D0AA282F8A88005BD339 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -438,6 +546,7 @@
 		};
 		AA39D0C7282F8A89005BD339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 932E67A97E4614F6B43157AF /* Pods-TawkUserManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -447,9 +556,9 @@
 				INFOPLIST_FILE = TawkUserManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,6 +574,7 @@
 		};
 		AA39D0C8282F8A89005BD339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83EEC00A184852F0D32754E2 /* Pods-TawkUserManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -474,9 +584,9 @@
 				INFOPLIST_FILE = TawkUserManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -6,6 +6,18 @@
 //
 
 struct UserDisplayModel {
-    let title: String
+    let userModels: [UserModel]
+}
+
+struct UserModel {
+    var isNote = false
+    
+    func getCellType() -> UserTableViewCellProtocol.Type {
+        if isNote {
+            return UserNoteTableViewCell.self
+        } else{
+            return UserNormalTableViewCell.self
+        }
+    }
 }
 

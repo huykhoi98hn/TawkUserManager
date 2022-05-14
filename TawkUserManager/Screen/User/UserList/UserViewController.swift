@@ -8,10 +8,26 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class UserViewController: UIViewController {
     private var viewModel: UserViewModel!
     private let disposeBag = DisposeBag()
+    var display = UserDisplayModel(userModels: [UserModel(isNote: false), UserModel(isNote: true)])
+    
+    private lazy var userTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.prefetchDataSource = self
+        tableView.separatorStyle = .none
+        tableView.registerCell(UserNormalTableViewCell.self)
+        tableView.registerCell(UserNoteTableViewCell.self)
+        tableView.registerCell(UserInvertedTableViewCell.self)
+        tableView.registerCell(UserNoteInvertedTableViewCell.self)
+        tableView.backgroundColor = Color.white
+        return tableView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +45,15 @@ extension UserViewController: ControllerType {
     }
     
     func setupViews() {
-        view.backgroundColor = .red
+        view.backgroundColor = Color.black
+        
+        [userTableView].forEach {
+            view.addSubview($0)
+        }
+        
+        userTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func bindViewModel() {
@@ -42,7 +66,6 @@ extension UserViewController: ControllerType {
     }
     
     func setupDisplay(display: UserDisplayModel) {
-        title = display.title
+        self.display = display
     }
 }
-

@@ -22,6 +22,13 @@
 		AA39D0E2282F923C005BD339 /* UserDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */; };
 		AA39D0E4282F9343005BD339 /* ControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0E3282F9343005BD339 /* ControllerType.swift */; };
 		AA39D0E6282F93B5005BD339 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0E5282F93B5005BD339 /* ViewModelType.swift */; };
+		AA39D0E9282F95F7005BD339 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0E8282F95F7005BD339 /* Color.swift */; };
+		AA39D0EC282F9726005BD339 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0EB282F9726005BD339 /* UITableView+Extensions.swift */; };
+		AA39D0EE282F98A3005BD339 /* UserViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0ED282F98A3005BD339 /* UserViewController+UITableView.swift */; };
+		AA39D0F7282F9968005BD339 /* UserNormalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0F4282F9968005BD339 /* UserNormalTableViewCell.swift */; };
+		AA39D0FB282FA79B005BD339 /* UserInvertedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FA282FA79B005BD339 /* UserInvertedTableViewCell.swift */; };
+		AA39D0FD282FA7A0005BD339 /* UserNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FC282FA7A0005BD339 /* UserNoteTableViewCell.swift */; };
+		AA39D0FF282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +70,13 @@
 		AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDisplayModel.swift; sourceTree = "<group>"; };
 		AA39D0E3282F9343005BD339 /* ControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerType.swift; sourceTree = "<group>"; };
 		AA39D0E5282F93B5005BD339 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		AA39D0E8282F95F7005BD339 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		AA39D0EB282F9726005BD339 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		AA39D0ED282F98A3005BD339 /* UserViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserViewController+UITableView.swift"; sourceTree = "<group>"; };
+		AA39D0F4282F9968005BD339 /* UserNormalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNormalTableViewCell.swift; sourceTree = "<group>"; };
+		AA39D0FA282FA79B005BD339 /* UserInvertedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInvertedTableViewCell.swift; sourceTree = "<group>"; };
+		AA39D0FC282FA7A0005BD339 /* UserNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNoteTableViewCell.swift; sourceTree = "<group>"; };
+		AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNoteInvertedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,8 @@
 			children = (
 				AA39D0DB282F91E5005BD339 /* Screen */,
 				AA39D0D0282F8C34005BD339 /* Base */,
+				AA39D0EA282F9715005BD339 /* Extensions */,
+				AA39D0E7282F95E4005BD339 /* Constants */,
 				AA39D09C282F8A86005BD339 /* AppDelegate.swift */,
 				AA39D0A8282F8A88005BD339 /* Assets.xcassets */,
 				AA39D0AA282F8A88005BD339 /* LaunchScreen.storyboard */,
@@ -166,7 +182,9 @@
 		AA39D0DA282F91D5005BD339 /* UserList */ = {
 			isa = PBXGroup;
 			children = (
+				AA39D0EF282F98C9005BD339 /* Cells */,
 				AA39D0DD282F923C005BD339 /* UserViewController.swift */,
+				AA39D0ED282F98A3005BD339 /* UserViewController+UITableView.swift */,
 				AA39D0DE282F923C005BD339 /* UserViewModel.swift */,
 				AA39D0DF282F923C005BD339 /* UserDisplayModel.swift */,
 			);
@@ -179,6 +197,33 @@
 				AA39D0CF282F8C29005BD339 /* User */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		AA39D0E7282F95E4005BD339 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0E8282F95F7005BD339 /* Color.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		AA39D0EA282F9715005BD339 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0EB282F9726005BD339 /* UITableView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AA39D0EF282F98C9005BD339 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D0F4282F9968005BD339 /* UserNormalTableViewCell.swift */,
+				AA39D0FC282FA7A0005BD339 /* UserNoteTableViewCell.swift */,
+				AA39D0FA282FA79B005BD339 /* UserInvertedTableViewCell.swift */,
+				AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B2955701064D2B148B3AC555 /* Frameworks */ = {
@@ -375,11 +420,18 @@
 				AA39D0E4282F9343005BD339 /* ControllerType.swift in Sources */,
 				AA39D0E2282F923C005BD339 /* UserDisplayModel.swift in Sources */,
 				AA39D0E0282F923C005BD339 /* UserViewController.swift in Sources */,
+				AA39D0E9282F95F7005BD339 /* Color.swift in Sources */,
 				AA39D0E1282F923C005BD339 /* UserViewModel.swift in Sources */,
+				AA39D0FF282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift in Sources */,
+				AA39D0FB282FA79B005BD339 /* UserInvertedTableViewCell.swift in Sources */,
+				AA39D0EE282F98A3005BD339 /* UserViewController+UITableView.swift in Sources */,
 				AA39D0A7282F8A86005BD339 /* TawkUserManager.xcdatamodeld in Sources */,
+				AA39D0F7282F9968005BD339 /* UserNormalTableViewCell.swift in Sources */,
 				AA39D0D6282F8C8B005BD339 /* Coordinator.swift in Sources */,
+				AA39D0EC282F9726005BD339 /* UITableView+Extensions.swift in Sources */,
 				AA39D0D4282F8C77005BD339 /* UserCoordinator.swift in Sources */,
 				AA39D0E6282F93B5005BD339 /* ViewModelType.swift in Sources */,
+				AA39D0FD282FA7A0005BD339 /* UserNoteTableViewCell.swift in Sources */,
 				AA39D09D282F8A86005BD339 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

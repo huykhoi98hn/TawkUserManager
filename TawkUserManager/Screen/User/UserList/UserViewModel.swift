@@ -12,11 +12,14 @@ class UserViewModel: ViewModelType {
     var input: Input
     var output: Output
     private let disposeBag = DisposeBag()
-    private let onLoading = PublishSubject<Void>()
-    private let display = PublishSubject<UserDisplayModel>()
+    private let onRequest = PublishSubject<Int>()
+    private let onResponse = PublishSubject<[UserModel]>()
+    private let searchText = BehaviorSubject<String>(value: "")
+    
     
     struct Input {
-        let onLoading: AnyObserver<Void>
+        let onRequest: AnyObserver<Int>
+        let searchText: AnyObserver<String>
     }
     
     struct Output {
@@ -25,9 +28,22 @@ class UserViewModel: ViewModelType {
     }
     
     init() {
-        input = Input(onLoading: onLoading.asObserver())
+        input = Input(
+            onRequest: onRequest.asObserver(),
+            searchText: searchText.asObserver()
+        )
         output = Output(
-            display: display.asObservable(),
+            display: Observable
+                .combineLatest(onResponse, searchText.map({ $0.trim() }))
+                .map { userModels, searchText in
+                    if searchText.isEmpty {
+                        return UserDisplayModel(userModels: userModels)
+                    }
+                    let searchedUserModels = userModels.filter {
+                        return $0.login.contains(searchText) || ($0.note?.contains(searchText) ?? false)
+                    }
+                    return UserDisplayModel(userModels: searchedUserModels)
+                },
             onNext: PublishSubject<Void>()
         )
         observeInput()
@@ -35,13 +51,23 @@ class UserViewModel: ViewModelType {
     
     private func observeInput() {
         disposeBag.insert([
-            onLoading.subscribe(onNext: { [weak self] in
-                self?.sendRequest()
+            onRequest.subscribe(onNext: { [weak self] userId in
+                self?.sendRequest(userId: userId)
             })
         ])
     }
     
-    private func sendRequest() {
-        
+    private func sendRequest(userId: Int) {
+        let request = UserRequest(since: userId)
+        APIService.shared.doRequestArray(
+            request,
+            completion: { [weak self] (result: Result<[UserModel], APIError>) in
+                switch result {
+                case .success(let success):
+                    self?.onResponse.onNext(success)
+                case .failure(_):
+                    break
+                }
+            })
     }
 }

@@ -98,5 +98,9 @@ class UserNoteTableViewCell: UITableViewCell {
 }
 
 extension UserNoteTableViewCell: UserTableViewCellProtocol {
-    
+    func setData(_ data: UserModel) {
+        nameLabel.text = data.login
+        detailLabel.text = data.htmlUrl
+//        userImageView.image =
+    }
 }

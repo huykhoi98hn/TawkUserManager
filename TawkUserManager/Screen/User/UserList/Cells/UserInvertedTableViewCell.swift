@@ -82,3 +82,11 @@ class UserInvertedTableViewCell: UITableViewCell {
         }
     }
 }
+
+extension UserInvertedTableViewCell: UserTableViewCellProtocol {
+    func setData(_ data: UserModel) {
+        nameLabel.text = data.login
+        detailLabel.text = data.htmlUrl
+//        userImageView.image =
+    }
+}

@@ -29,6 +29,12 @@
 		AA39D0FB282FA79B005BD339 /* UserInvertedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FA282FA79B005BD339 /* UserInvertedTableViewCell.swift */; };
 		AA39D0FD282FA7A0005BD339 /* UserNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FC282FA7A0005BD339 /* UserNoteTableViewCell.swift */; };
 		AA39D0FF282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */; };
+		AA39D102282FAE3E005BD339 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D101282FAE3E005BD339 /* APIService.swift */; };
+		AA39D104282FAEE6005BD339 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D103282FAEE6005BD339 /* RequestType.swift */; };
+		AA39D106282FAF9D005BD339 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D105282FAF9D005BD339 /* UserRequest.swift */; };
+		AA39D108282FB7C0005BD339 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D107282FB7C0005BD339 /* AsynchronousOperation.swift */; };
+		AA39D10A282FB7E0005BD339 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D109282FB7E0005BD339 /* NetworkOperation.swift */; };
+		AA39D10D282FF7F4005BD339 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39D10C282FF7F4005BD339 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,12 @@
 		AA39D0FA282FA79B005BD339 /* UserInvertedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInvertedTableViewCell.swift; sourceTree = "<group>"; };
 		AA39D0FC282FA7A0005BD339 /* UserNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNoteTableViewCell.swift; sourceTree = "<group>"; };
 		AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNoteInvertedTableViewCell.swift; sourceTree = "<group>"; };
+		AA39D101282FAE3E005BD339 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		AA39D103282FAEE6005BD339 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		AA39D105282FAF9D005BD339 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
+		AA39D107282FB7C0005BD339 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
+		AA39D109282FB7E0005BD339 /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		AA39D10C282FF7F4005BD339 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +146,7 @@
 				AA39D0D0282F8C34005BD339 /* Base */,
 				AA39D0EA282F9715005BD339 /* Extensions */,
 				AA39D0E7282F95E4005BD339 /* Constants */,
+				AA39D100282FADE0005BD339 /* Service */,
 				AA39D09C282F8A86005BD339 /* AppDelegate.swift */,
 				AA39D0A8282F8A88005BD339 /* Assets.xcassets */,
 				AA39D0AA282F8A88005BD339 /* LaunchScreen.storyboard */,
@@ -175,6 +188,7 @@
 				AA39D0D5282F8C8B005BD339 /* Coordinator.swift */,
 				AA39D0E3282F9343005BD339 /* ControllerType.swift */,
 				AA39D0E5282F93B5005BD339 /* ViewModelType.swift */,
+				AA39D103282FAEE6005BD339 /* RequestType.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -211,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				AA39D0EB282F9726005BD339 /* UITableView+Extensions.swift */,
+				AA39D10C282FF7F4005BD339 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +239,25 @@
 				AA39D0FE282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		AA39D100282FADE0005BD339 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D10B282FB80A005BD339 /* Request */,
+				AA39D101282FAE3E005BD339 /* APIService.swift */,
+				AA39D107282FB7C0005BD339 /* AsynchronousOperation.swift */,
+				AA39D109282FB7E0005BD339 /* NetworkOperation.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AA39D10B282FB80A005BD339 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				AA39D105282FAF9D005BD339 /* UserRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		B2955701064D2B148B3AC555 /* Frameworks */ = {
@@ -418,20 +452,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA39D0E4282F9343005BD339 /* ControllerType.swift in Sources */,
+				AA39D102282FAE3E005BD339 /* APIService.swift in Sources */,
 				AA39D0E2282F923C005BD339 /* UserDisplayModel.swift in Sources */,
 				AA39D0E0282F923C005BD339 /* UserViewController.swift in Sources */,
+				AA39D106282FAF9D005BD339 /* UserRequest.swift in Sources */,
 				AA39D0E9282F95F7005BD339 /* Color.swift in Sources */,
 				AA39D0E1282F923C005BD339 /* UserViewModel.swift in Sources */,
+				AA39D104282FAEE6005BD339 /* RequestType.swift in Sources */,
 				AA39D0FF282FA82D005BD339 /* UserNoteInvertedTableViewCell.swift in Sources */,
 				AA39D0FB282FA79B005BD339 /* UserInvertedTableViewCell.swift in Sources */,
 				AA39D0EE282F98A3005BD339 /* UserViewController+UITableView.swift in Sources */,
 				AA39D0A7282F8A86005BD339 /* TawkUserManager.xcdatamodeld in Sources */,
+				AA39D10D282FF7F4005BD339 /* String+Extensions.swift in Sources */,
 				AA39D0F7282F9968005BD339 /* UserNormalTableViewCell.swift in Sources */,
+				AA39D10A282FB7E0005BD339 /* NetworkOperation.swift in Sources */,
 				AA39D0D6282F8C8B005BD339 /* Coordinator.swift in Sources */,
 				AA39D0EC282F9726005BD339 /* UITableView+Extensions.swift in Sources */,
 				AA39D0D4282F8C77005BD339 /* UserCoordinator.swift in Sources */,
 				AA39D0E6282F93B5005BD339 /* ViewModelType.swift in Sources */,
 				AA39D0FD282FA7A0005BD339 /* UserNoteTableViewCell.swift in Sources */,
+				AA39D108282FB7C0005BD339 /* AsynchronousOperation.swift in Sources */,
 				AA39D09D282F8A86005BD339 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

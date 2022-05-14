@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserTableViewCellProtocol: UITableViewCell {
-    
+    func setData(_ data: UserModel)
 }
 
 class UserNormalTableViewCell: UITableViewCell {
@@ -90,5 +90,9 @@ class UserNormalTableViewCell: UITableViewCell {
 }
 
 extension UserNormalTableViewCell: UserTableViewCellProtocol {
-    
+    func setData(_ data: UserModel) {
+        nameLabel.text = data.login
+        detailLabel.text = data.htmlUrl
+//        userImageView.image =
+    }
 }

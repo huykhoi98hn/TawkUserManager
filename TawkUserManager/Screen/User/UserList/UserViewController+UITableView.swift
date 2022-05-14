@@ -19,7 +19,10 @@ extension UserViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(display.userModels[indexPath.row].getCellType(), for: indexPath) {
+        let userModel = display.userModels[indexPath.row]
+        let cellType = userModel.getCellType(at: indexPath)
+        if let cell = tableView.dequeueReusableCell(cellType, for: indexPath) as? UserTableViewCellProtocol {
+            cell.setData(userModel)
             return cell
         }
         return UITableViewCell()

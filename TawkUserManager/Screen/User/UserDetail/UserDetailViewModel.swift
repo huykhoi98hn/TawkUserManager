@@ -56,6 +56,7 @@ class UserDetailViewModel: ViewModelType {
                 self.sendRequest(userModel: self.userModel)
             }),
             onSaveNote.subscribe(onNext: { [weak self] userModel in
+                self?.userModel = userModel
                 self?.savedNote.onNext(UserManager.shared.saveUser(userModel))
             })
         ])

@@ -46,6 +46,7 @@
 		AADF80D228309ECA00403E25 /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADF80D128309ECA00403E25 /* UIScrollView+Extensions.swift */; };
 		AADF80D52830A02500403E25 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADF80D42830A02500403E25 /* UserManager.swift */; };
 		AADF80D72830A13E00403E25 /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADF80D62830A13E00403E25 /* Codable+Extensions.swift */; };
+		AADF80DA2830C22B00403E25 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADF80D92830C22B00403E25 /* ConnectionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		AADF80D128309ECA00403E25 /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
 		AADF80D42830A02500403E25 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AADF80D62830A13E00403E25 /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
+		AADF80D92830C22B00403E25 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 		AA39D10F282FF8B2005BD339 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AADF80D82830C22000403E25 /* ConnectionManager */,
 				AADF80D32830A01700403E25 /* UserManager */,
 				AA39D119282FFED9005BD339 /* ImageDataManager */,
 				AA39D116282FFB6F005BD339 /* CoreDataService */,
@@ -331,6 +334,14 @@
 				AADF80D42830A02500403E25 /* UserManager.swift */,
 			);
 			path = UserManager;
+			sourceTree = "<group>";
+		};
+		AADF80D82830C22000403E25 /* ConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				AADF80D92830C22B00403E25 /* ConnectionManager.swift */,
+			);
+			path = ConnectionManager;
 			sourceTree = "<group>";
 		};
 		B2955701064D2B148B3AC555 /* Frameworks */ = {
@@ -556,6 +567,7 @@
 				AA39D108282FB7C0005BD339 /* AsynchronousOperation.swift in Sources */,
 				AADF80D228309ECA00403E25 /* UIScrollView+Extensions.swift in Sources */,
 				AA39D09D282F8A86005BD339 /* AppDelegate.swift in Sources */,
+				AADF80DA2830C22B00403E25 /* ConnectionManager.swift in Sources */,
 				AADF80D02830953E00403E25 /* UserDetailRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,6 +740,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HSXVFBW26B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TawkUserManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -740,7 +753,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = none.TawkUserManager;
+				PRODUCT_BUNDLE_IDENTIFIER = khoinh.TawkUserManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -756,6 +769,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HSXVFBW26B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TawkUserManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -768,7 +782,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = none.TawkUserManager;
+				PRODUCT_BUNDLE_IDENTIFIER = khoinh.TawkUserManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -14,6 +14,7 @@ enum APIError: Error {
     case unknowed
     case invalidUrl
     case cancelRequest
+    case noInternet
 }
 
 class APIService {
@@ -22,6 +23,14 @@ class APIService {
     private let networkQueue: OperationQueue
     private var operationCount = 0
     private let lock = NSLock()
+    private lazy var connectionManager = ConnectionManager(whenReachable: { [weak self] networkPendingArray in
+        guard let self = self else {
+            return
+        }
+        for operaration in networkPendingArray {
+            self.addOperation(operaration)
+        }
+    })
     
     static let shared: APIService = {
         let domain = "https://api.github.com/"
@@ -42,9 +51,13 @@ class APIService {
             completion(.failure(.invalidUrl))
             return
         }
-        let operation = NetworkOperation(session: session, urlRequest: urlRequest) { data, error in
-            if let _ = error {
-                completion(.failure(.unknowed))
+        let operation = NetworkOperation(
+            session: session,
+            urlRequest: urlRequest,
+            connectionManager: connectionManager
+        ) { data, error in
+            if let error = error {
+                completion(.failure(error.isNoInternetError ? .noInternet : .unknowed))
             } else if let data = data {
                 let decoder = JSONDecoder()
                 if let model = try? decoder.decode(T.self, from: data) {
@@ -63,9 +76,13 @@ class APIService {
         guard let urlRequest = request.makeUrlRequest(domain) else {
             return
         }
-        let operation = NetworkOperation(session: session, urlRequest: urlRequest) { [weak self] data, error in
-            if let _ = error {
-                completion(.failure(.unknowed))
+        let operation = NetworkOperation(
+            session: session,
+            urlRequest: urlRequest,
+            connectionManager: connectionManager
+        ) { [weak self] data, error in
+            if let error = error {
+                completion(.failure(error.isNoInternetError ? .noInternet : .unknowed))
             } else if let data = data {
                 let decoder = JSONDecoder()
                 if let model = try? decoder.decode([T].self, from: data) {
@@ -87,9 +104,13 @@ class APIService {
             completion(.failure(.invalidUrl))
             return nil
         }
-        let operation = NetworkOperation(session: session, urlRequest: URLRequest(url: url)) { [weak self] data, error in
-            if let _ = error {
-                completion(.failure(.unknowed))
+        let operation = NetworkOperation(
+            session: session,
+            urlRequest: URLRequest(url: url),
+            connectionManager: connectionManager
+        ) { [weak self] data, error in
+            if let error = error {
+                completion(.failure(error.isNoInternetError ? .noInternet : .unknowed))
             } else if let data = data {
                 completion(.success(data))
             } else {
@@ -105,7 +126,7 @@ class APIService {
         return operationCount == 0
     }
     
-    private func addOperation(_ operation: NetworkOperation) {
+    func addOperation(_ operation: NetworkOperation) {
         networkQueue.addOperation(operation)
         lock.lock()
         operationCount += 1

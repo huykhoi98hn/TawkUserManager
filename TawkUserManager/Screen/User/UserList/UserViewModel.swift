@@ -91,8 +91,13 @@ class UserViewModel: ViewModelType {
                         self.userModels.append(contentsOf: processedData)
                         self.onResponse.onNext((self.userModels, true))
                     }
-                case .failure(_):
-                    break
+                case .failure(let error):
+                    if userId == 0 && error == .noInternet {
+                        let savedUsers = UserManager.shared.getAllUser()
+                        let processedData = self.processData(userModels: savedUsers)
+                        self.userModels = processedData
+                        self.onResponse.onNext((self.userModels, false))
+                    }
                 }
             })
     }

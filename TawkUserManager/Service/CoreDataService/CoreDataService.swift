@@ -73,4 +73,21 @@ class CoreDataService {
             return false
         }
     }
+    
+    func deleteAll(entityName: String) {
+        guard let managedContext = managedContext else {
+            return
+        }
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        lock.lock()
+        do {
+            try managedContext.execute(deleteRequest)
+            lock.unlock()
+        } catch let error as NSError {
+            print("Could not delete. \(error), \(error.userInfo)")
+            lock.unlock()
+        }
+    }
 }

@@ -37,6 +37,29 @@ struct UserModel: Codable {
         note = user.note
     }
     
+    init(_id: Int,
+         avatarUrl: String,
+         login: String,
+         htmlUrl: String,
+         name: String? = nil,
+         followers: Int? = nil,
+         following: Int? = nil,
+         company: String? = nil,
+         blog: String? = nil,
+         note: String? = nil
+    ) {
+        self._id = _id
+        self.avatarUrl = avatarUrl
+        self.login = login
+        self.htmlUrl = htmlUrl
+        self.name = name
+        self.followers = followers
+        self.following = following
+        self.company = company
+        self.blog = blog
+        self.note = note
+    }
+    
     enum CodingKeys: String, CodingKey {
         case _id = "id"
         case avatarUrl = "avatar_url"

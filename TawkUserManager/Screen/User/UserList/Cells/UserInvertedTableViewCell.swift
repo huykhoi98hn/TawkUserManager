@@ -22,7 +22,7 @@ class UserInvertedTableViewCell: UITableViewCell {
         let imageView = DownloadImageView()
         imageView.backgroundColor = .white
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = Color.raisinBlackLight.cgColor
+        imageView.layer.borderColor = UIColor.white.cgColor
         return imageView
     }()
     

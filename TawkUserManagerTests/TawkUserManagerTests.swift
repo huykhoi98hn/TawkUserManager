@@ -19,8 +19,26 @@ class TawkUserManagerTests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let coreDataService = CoreDataService.shared
+        coreDataService.setup(managedContext: (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext)
+        coreDataService.deleteAll(entityName: "User")
+        
+        //test create logic
+        var mockUser = UserModel(_id: 001, avatarUrl: "", login: "abc", htmlUrl: "")
+        let userManager = UserManager(coreDataService: coreDataService, entityName: "User")
+        
+        userManager.saveUser(mockUser)
+        
+        let savedUser = userManager.getUser(userId: mockUser._id)
+        XCTAssertEqual(savedUser?._id, mockUser._id)
+        XCTAssertEqual(savedUser?.login, mockUser.login)
+        
+        //test update logic
+        mockUser.login = "abcdddd"
+        userManager.saveUser(mockUser)
+        
+        let newSavedUser = userManager.getUser(userId: mockUser._id)
+        XCTAssertEqual(newSavedUser?.login, "abcdddd")
     }
 
     func testPerformanceExample() throws {

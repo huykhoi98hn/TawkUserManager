@@ -3,4 +3,5 @@ target 'TawkUserManager' do
   pod 'RxSwift', '6.5.0'
   pod 'RxCocoa', '6.5.0'
   pod 'SnapKit'
+  pod 'ESPullToRefresh'
 end

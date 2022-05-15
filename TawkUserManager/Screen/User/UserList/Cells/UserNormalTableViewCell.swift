@@ -14,17 +14,19 @@ protocol UserTableViewCellProtocol: UITableViewCell {
 class UserNormalTableViewCell: UITableViewCell {
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = Color.black
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.red.cgColor
+        view.backgroundColor = .white
+        view.layer.borderWidth = 1.5
+        view.layer.borderColor = Color.raisinBlackVeryLight.cgColor
+        view.layer.cornerRadius = 6
+        view.layer.masksToBounds = true
         return view
     }()
     
-    private let userImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .gray
+    private let userImageView: DownloadImageView = {
+        let imageView = DownloadImageView()
+        imageView.backgroundColor = .white
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.yellow.cgColor
+        imageView.layer.borderColor = Color.raisinBlackLight.cgColor
         return imageView
     }()
     
@@ -32,8 +34,7 @@ class UserNormalTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.numberOfLines = 1
-        label.textColor = .white
-        label.text = "b"
+        label.textColor = Color.raisinBlack
         return label
     }()
     
@@ -41,8 +42,7 @@ class UserNormalTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 1
-        label.textColor = .white
-        label.text = "a"
+        label.textColor = Color.raisinBlack
         return label
     }()
     
@@ -53,15 +53,17 @@ class UserNormalTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        contentView.backgroundColor = Color.white
+        contentView.backgroundColor = .white
         setupViews()
     }
     
     private func setupViews() {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
-            make.top.leading.equalTo(6)
-            make.bottom.trailing.equalTo(-6)
+            make.top.equalTo(6)
+            make.leading.equalTo(10)
+            make.bottom.equalTo(-6)
+            make.trailing.equalTo(-10)
         }
         
         [userImageView, nameLabel, detailLabel].forEach {
@@ -93,6 +95,6 @@ extension UserNormalTableViewCell: UserTableViewCellProtocol {
     func setData(_ data: UserModel) {
         nameLabel.text = data.login
         detailLabel.text = data.htmlUrl
-//        userImageView.image =
+        userImageView.setImage(with: data.avatarUrl)
     }
 }

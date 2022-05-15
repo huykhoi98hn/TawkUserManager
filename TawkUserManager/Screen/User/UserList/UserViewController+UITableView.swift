@@ -9,7 +9,8 @@ import UIKit
 
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let userModel = display.userModels[indexPath.row]
+        viewModel.input.onNext.onNext(userModel)
     }
 }
 
@@ -30,11 +31,5 @@ extension UserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 96
-    }
-}
-
-extension UserViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        
     }
 }

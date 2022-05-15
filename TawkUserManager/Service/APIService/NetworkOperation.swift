@@ -32,6 +32,8 @@ class NetworkOperation: AsynchronousOperation {
     
     override func cancel() {
         dataTask?.cancel()
+        completion(nil, APIError.cancelRequest)
         super.cancel()
+        completeOperation()
     }
 }

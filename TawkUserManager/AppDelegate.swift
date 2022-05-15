@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        CoreDataService.shared.setup(managedContext: persistentContainer.viewContext)
+        ImageDataManager.shared.fetchData()
+        
         let window = UIWindow()
         let rootNavViewController = UINavigationController()
         rootCoordinator = UserCoordinator(navigationController: rootNavViewController)

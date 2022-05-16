@@ -5,8 +5,7 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import Combine
 
 class UserDetailViewController: UIViewController {
     @IBOutlet private weak var nameHeaderLabel: UILabel!
@@ -23,13 +22,13 @@ class UserDetailViewController: UIViewController {
     private var display = UserDetailDisplayModel()
     
     private var viewModel: UserDetailViewModel!
-    private let disposeBag = DisposeBag()
+    private var cancelBag = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
-        viewModel.input.onLoading.onNext(())
+        viewModel.onLoading.send(())
     }
     
     @objc private func keyboardShow(notification: NSNotification) {
@@ -69,14 +68,14 @@ class UserDetailViewController: UIViewController {
         }
         userModel.note = noteTextView.text
         self.display.userModel = userModel
-        viewModel.input.onSaveNote.onNext(userModel)
+        viewModel.onSaveNote.send(userModel)
     }
     
     @IBAction private func backAction(_ sender: Any) {
         guard let userModel = display.userModel else {
             return
         }
-        viewModel.input.onBack.onNext(userModel)
+        viewModel.onBack.send(userModel)
     }
 }
 extension UserDetailViewController: ControllerType {
@@ -106,23 +105,20 @@ extension UserDetailViewController: ControllerType {
     }
     
     func bindViewModel() {
-        let output = viewModel.output
-        disposeBag.insert([
-            output.display.bind(to: Binder(self) { target, value in
-                target.setupDisplay(display: value)
-            }),
-            output.savedNote.subscribe(onNext: { [weak self] isSuccess in
-                self?.noteTextView.resignFirstResponder()
-                let alertController = UIAlertController(
-                    title: isSuccess ? "Success!" : "Fail!",
-                    message: isSuccess ? "Save note success" : "Save note fail",
-                    preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .cancel)
-                alertController.addAction(okAction)
-                
-                self?.present(alertController, animated: true)
-            })
-        ])
+        viewModel.display.receive(on: RunLoop.main).sink(receiveValue: { [weak self] display in
+            self?.setupDisplay(display: display)
+        }).store(in: &cancelBag)
+        viewModel.savedNote.receive(on: RunLoop.main).sink(receiveValue: { [weak self] isSuccess in
+            self?.noteTextView.resignFirstResponder()
+            let alertController = UIAlertController(
+                title: isSuccess ? "Success!" : "Fail!",
+                message: isSuccess ? "Save note success" : "Save note fail",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel)
+            alertController.addAction(okAction)
+            
+            self?.present(alertController, animated: true)
+        }).store(in: &cancelBag)
     }
     
     func setupDisplay(display: UserDetailDisplayModel) {

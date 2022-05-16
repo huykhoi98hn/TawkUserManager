@@ -10,7 +10,7 @@ import UIKit
 extension UserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userModel = display.userModels[indexPath.row]
-        viewModel.input.onNext.onNext(userModel)
+        viewModel.onNext.send(userModel)
     }
 }
 

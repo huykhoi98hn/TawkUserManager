@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import RxSwift
+import Combine
 
 class UserCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var userViewModel: UserViewModel?
-    private let disposeBag = DisposeBag()
+    private var cancelBag = Set<AnyCancellable>()
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -23,9 +23,9 @@ class UserCoordinator: Coordinator {
         let userViewController = UserViewController()
         let userViewModel = UserViewModel()
         self.userViewModel = userViewModel
-        userViewModel.output.onNext.subscribe(onNext: { [weak self] userModel in
+        userViewModel.onNext.sink(receiveValue: { [weak self] userModel in
             self?.goToUserDetail(userModel: userModel)
-        }).disposed(by: disposeBag)
+        }).store(in: &cancelBag)
         userViewController.configViewModel(viewModel: userViewModel)
         navigationController.pushViewController(userViewController, animated: false)
     }
@@ -33,10 +33,10 @@ class UserCoordinator: Coordinator {
     func goToUserDetail(userModel: UserModel) {
         let userDetailViewController = UserDetailViewController()
         let userDetailViewModel = UserDetailViewModel(userModel: userModel)
-        userDetailViewModel.output.onBack.subscribe(onNext: { [weak self] userModel in
+        userDetailViewModel.onBack.sink(receiveValue: { [weak self] userModel in
             self?.navigationController.popViewController(animated: true)
-            self?.userViewModel?.input.onUpdate.onNext(userModel)
-        }).disposed(by: disposeBag)
+            _ = self?.userViewModel?.onUpdate.send(userModel)
+        }).store(in: &cancelBag)
         userDetailViewController.configViewModel(viewModel: userDetailViewModel)
         navigationController.pushViewController(userDetailViewController, animated: true)
     }

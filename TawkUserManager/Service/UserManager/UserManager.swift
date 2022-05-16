@@ -37,4 +37,9 @@ class UserManager {
         }
         return nil
     }
+    
+    func getAllUser() -> [UserModel] {
+        let users: [User] = coreDataService.fetch(entityName: entityName) ?? []
+        return users.map({ UserModel(user: $0) })
+    }
 }

@@ -5,61 +5,35 @@
 //  Created by Savvycom2021 on 15/05/2022.
 //
 
-import RxCocoa
-import RxSwift
+import Foundation
+import Combine
 
 class UserDetailViewModel: ViewModelType {
-    var input: Input
-    var output: Output
     var userModel: UserModel
-    private let disposeBag = DisposeBag()
-    private let onLoading = PublishSubject<Void>()
-    private let display: BehaviorSubject<UserDetailDisplayModel>
-    private let onBack = PublishSubject<UserModel>()
-    private let onSaveNote = PublishSubject<UserModel>()
-    private let savedNote = PublishSubject<Bool>()
-    
-    struct Input {
-        let onLoading: AnyObserver<Void>
-        let onBack: AnyObserver<UserModel>
-        let onSaveNote: AnyObserver<UserModel>
-    }
-    
-    struct Output {
-        let display: Observable<UserDetailDisplayModel>
-        let onBack: Observable<UserModel>
-        let savedNote: Observable<Bool>
-    }
+    private var cancelBag = Set<AnyCancellable>()
+    let onLoading = PassthroughSubject<Void, Never>()
+    let display: CurrentValueSubject<UserDetailDisplayModel, Never>
+    let onBack = PassthroughSubject<UserModel, Never>()
+    let onSaveNote = PassthroughSubject<UserModel, Never>()
+    let savedNote = PassthroughSubject<Bool, Never>()
     
     init(userModel: UserModel) {
         self.userModel = userModel
-        display = BehaviorSubject<UserDetailDisplayModel>(value: UserDetailDisplayModel(userModel: userModel))
-        input = Input(
-            onLoading: onLoading.asObserver(),
-            onBack: onBack.asObserver(),
-            onSaveNote: onSaveNote.asObserver()
-        )
-        output = Output(
-            display: display.asObservable(),
-            onBack: onBack.asObservable(),
-            savedNote: savedNote.asObservable()
-        )
+        display = CurrentValueSubject<UserDetailDisplayModel, Never>(UserDetailDisplayModel(userModel: userModel))
         observeInput()
     }
     
     private func observeInput() {
-        disposeBag.insert([
-            onLoading.subscribe(onNext: { [weak self] userName in
-                guard let self = self else {
-                    return
-                }
-                self.sendRequest(userModel: self.userModel)
-            }),
-            onSaveNote.subscribe(onNext: { [weak self] userModel in
-                self?.userModel = userModel
-                self?.savedNote.onNext(UserManager.shared.saveUser(userModel))
-            })
-        ])
+        onLoading.sink(receiveValue: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.sendRequest(userModel: self.userModel)
+        }).store(in: &cancelBag)
+        onSaveNote.sink(receiveValue: { [weak self] userModel in
+            self?.userModel = userModel
+            self?.savedNote.send(UserManager.shared.saveUser(userModel))
+        }).store(in: &cancelBag)
     }
     
     private func sendRequest(userModel: UserModel) {
@@ -73,7 +47,7 @@ class UserDetailViewModel: ViewModelType {
                 switch result {
                 case .success(let success):
                     let processedUserModel = self.processData(userModel: success)
-                    self.display.onNext(UserDetailDisplayModel(userModel: processedUserModel))
+                    self.display.send(UserDetailDisplayModel(userModel: processedUserModel))
                     UserManager.shared.saveUser(processedUserModel)
                 case .failure(_):
                     break

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RxSwift
 
 enum APIError: Error {
     case noData

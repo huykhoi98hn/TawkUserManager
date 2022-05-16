@@ -5,72 +5,42 @@
 //  Created by Savvycom2021 on 14/05/2022.
 //
 
-import RxCocoa
-import RxSwift
+import Combine
+import Foundation
 
 class UserViewModel: ViewModelType {
-    var input: Input
-    var output: Output
-    private let disposeBag = DisposeBag()
-    private let onUpdate = PublishSubject<UserModel>()
-    private let onRequest = PublishSubject<Int>()
-    private let onResponse = PublishSubject<([UserModel], Bool)>()
-    private let onSearchText = BehaviorSubject<String>(value: "")
-    private let display = PublishSubject<UserDisplayModel>()
+    private var cancelBag = Set<AnyCancellable>()
+    let onUpdate = PassthroughSubject<UserModel, Never>()
+    let onRequest = PassthroughSubject<Int, Never>()
+    let onResponse = PassthroughSubject<([UserModel], Bool), Never>()
+    let onSearchText = CurrentValueSubject<String, Never>("")
+    let display = PassthroughSubject<UserDisplayModel, Never>()
+    let onNext = PassthroughSubject<UserModel, Never>()
     private var userModels: [UserModel] = []
-    private let onNext = PublishSubject<UserModel>()
-    
-    struct Input {
-        let onRequest: AnyObserver<Int>
-        let onSearchText: AnyObserver<String>
-        let onNext: AnyObserver<UserModel>
-        let onUpdate: AnyObserver<UserModel>
-    }
-    
-    struct Output {
-        let display: Observable<UserDisplayModel>
-        let onNext: Observable<UserModel>
-        let onUpdate: Observable<UserModel>
-    }
     
     init() {
-        input = Input(
-            onRequest: onRequest.asObserver(),
-            onSearchText: onSearchText.asObserver(),
-            onNext: onNext.asObserver(),
-            onUpdate: onUpdate.asObserver()
-        )
-        
-        output = Output(
-            display: display.asObservable(),
-            onNext: onNext.asObservable(),
-            onUpdate: onUpdate.asObservable()
-        )
         observeInput()
     }
     
     private func observeInput() {
-        disposeBag.insert([
-            onRequest.subscribe(onNext: { [weak self] userId in
-                self?.sendRequest(userId: userId)
-            }),
-            Observable
-                .combineLatest(onResponse, onSearchText.map({ $0.trim().lowercased() }))
-                .subscribe(onNext: { [weak self] response, searchText in
-                    guard let self = self else {
-                        return
+        onRequest.sink(receiveValue: { [weak self] userId in
+            self?.sendRequest(userId: userId)
+        }).store(in: &cancelBag)
+        onResponse.combineLatest(onSearchText.map({ $0.trim().lowercased() }))
+            .sink(receiveValue: { [weak self] response, searchText in
+                guard let self = self else {
+                    return
+                }
+                if searchText.isEmpty {
+                    self.display.send(UserDisplayModel(userModels: response.0, isLoadmore: response.1))
+                } else {
+                    let searchedUserModels = response.0.filter {
+                        return $0.login.lowercased().contains(searchText)
+                        || ($0.note?.lowercased().contains(searchText) ?? false)
                     }
-                    if searchText.isEmpty {
-                        self.display.onNext(UserDisplayModel(userModels: response.0, isLoadmore: response.1))
-                    } else {
-                        let searchedUserModels = response.0.filter {
-                            return $0.login.lowercased().contains(searchText)
-                            || ($0.note?.lowercased().contains(searchText) ?? false)
-                        }
-                        self.display.onNext(UserDisplayModel(userModels: searchedUserModels, isLoadmore: false))
-                    }
-                }),
-        ])
+                    self.display.send(UserDisplayModel(userModels: searchedUserModels, isLoadmore: false))
+                }
+            }).store(in: &cancelBag)
     }
     
     private func sendRequest(userId: Int) {
@@ -86,17 +56,17 @@ class UserViewModel: ViewModelType {
                     let processedData = self.processData(userModels: success)
                     if userId == 0 { // first load
                         self.userModels = processedData
-                        self.onResponse.onNext((self.userModels, false))
+                        self.onResponse.send((self.userModels, false))
                     } else { // load more
                         self.userModels.append(contentsOf: processedData)
-                        self.onResponse.onNext((self.userModels, true))
+                        self.onResponse.send((self.userModels, true))
                     }
                 case .failure(let error):
                     if userId == 0 && error == .noInternet {
                         let savedUsers = UserManager.shared.getAllUser()
                         let processedData = self.processData(userModels: savedUsers)
                         self.userModels = processedData
-                        self.onResponse.onNext((self.userModels, false))
+                        self.onResponse.send((self.userModels, false))
                     }
                 }
             })

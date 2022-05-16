@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
+import Combine
 import SnapKit
 import ESPullToRefresh
 
 class UserViewController: UIViewController {
-    private let disposeBag = DisposeBag()
+    private var cancelBag = Set<AnyCancellable>()
     var viewModel: UserViewModel!
     var display = UserDisplayModel(userModels: [])
     
@@ -47,7 +46,7 @@ class UserViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
-        viewModel.input.onRequest.onNext(0)
+        viewModel.onRequest.send(0)
     }
 }
 extension UserViewController: ControllerType {
@@ -89,12 +88,16 @@ extension UserViewController: ControllerType {
     }
     
     func bindViewModel() {
-        let output = viewModel.output
-        disposeBag.insert([
-            output.display.bind(to: Binder(self) { target, value in
-                target.setupDisplay(display: value)
-            }),
-            output.onUpdate.subscribe(onNext: { [weak self] userModel in
+        viewModel
+            .display
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] display in
+                self?.setupDisplay(display: display)
+            }).store(in: &cancelBag)
+        viewModel
+            .onUpdate
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] userModel in
                 guard let self = self else {
                     return
                 }
@@ -102,8 +105,7 @@ extension UserViewController: ControllerType {
                     self.display.userModels[index] = userModel
                     self.userTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
                 }
-            })
-        ])
+            }).store(in: &cancelBag)
     }
     
     func setupDisplay(display: UserDisplayModel) {
@@ -136,7 +138,7 @@ extension UserViewController: ControllerType {
                   let userId = self.display.userModels.last?._id else {
                       return
                   }
-            self.viewModel.input.onRequest.onNext(userId)
+            self.viewModel.onRequest.send(userId)
         }
     }
     
@@ -195,6 +197,6 @@ extension UserViewController: UISearchBarDelegate {
         } else {
             removeLoadmore()
         }
-        viewModel.input.onSearchText.onNext(searchText)
+        viewModel.onSearchText.send(searchText)
     }
 }
